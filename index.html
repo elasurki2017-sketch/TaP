@@ -1828,7 +1828,26 @@ function validateProfilePeriod(){
 PROFILE EVENTS
 ========================= */
 
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
+      alert("dom loaded");
+
+      let btn =
+      document.getElementById("profileBtn");
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+            alert("profile working");
+
+        }
+      );
+
+  }
+);
 
     
 
