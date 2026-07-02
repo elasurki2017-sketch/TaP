@@ -958,8 +958,13 @@ PART 3 = FULL JS FINAL
 
 <script>
     
-    window.onerror = function(msg){
-   alert("ERROR: " + msg);
+    window.onerror = function(msg,url,line){
+
+    alert(
+      "ERROR: " + msg +
+      " LINE: " + line
+    );
+
 }
     
 /* =========================
