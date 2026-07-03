@@ -2391,29 +2391,49 @@ doc.text(
     {align:"center"}
 );
 
-    /* ================= SIGNATURE ================= */
+/* ================= SIGNATURE ================= */
 
 y += 25;
 
 /* panjang area tanda tangan */
-
 let signWidth = 50;
 
 /* garis berakhir tepat di kanan tabel */
-
 let sigStartX =
 tableRight - signWidth;
 
 /* titik tengah area signature */
-
 let sigCenter =
 sigStartX + (signWidth / 2);
 
-/* text Signature = center */
+/* tanggal saat PDF dibuat */
+let today = new Date();
 
+/* nama bulan */
+let bulan = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember"
+];
+
+let tanggal =
+today.getDate() + " " +
+bulan[today.getMonth()] + " " +
+today.getFullYear();
+
+/* text lokasi + tanggal */
 doc.text(
 
-    "Signature",
+    "Jakarta " + tanggal,
 
     sigCenter,
 
@@ -2424,7 +2444,6 @@ doc.text(
 );
 
 /* garis */
-
 y += 22;
 
 doc.line(
@@ -2440,7 +2459,6 @@ doc.line(
 );
 
 /* nama = center terhadap garis */
-
 y += 6;
 
 doc.text(
