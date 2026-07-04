@@ -2578,13 +2578,13 @@ for(let i = 1; i <= totalPages; i++){
         yearSelect.value +
         ".pdf";
 
-    alert("Sebelum save");
+    const pdfBase64 =
+doc.output("datauristring");
 
-const blob = doc.output("blob");
-
-alert(blob.size);
-
-alert("Sesudah save");
+Android.savePDF(
+    pdfBase64,
+    fileName
+);
 }
 
 /* =========================
