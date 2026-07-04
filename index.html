@@ -2581,10 +2581,8 @@ for(let i = 1; i <= totalPages; i++){
     const pdfBase64 =
 doc.output("datauristring");
 
-Android.savePDF(
-    pdfBase64,
-    fileName
-);
+const pdfBase64 = doc.output("datauristring");
+Android.savePDF(pdfBase64, fileName);
 }
 
 /* =========================
