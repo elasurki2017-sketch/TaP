@@ -1576,7 +1576,7 @@ SAVE ROW
 ========================= */
 
 saveRowBtn.onclick = async ()=>{
-
+alert("Save ditekan");
     if(!validateProfilePeriod()) return;
     if(!validateForm()) return;
     
@@ -1955,7 +1955,7 @@ EXPORT PDF
 ========================= */
 
 async function exportPDF(){
-
+alert("Export ditekan");
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF("p","mm","a4");
 
