@@ -2580,7 +2580,9 @@ for(let i = 1; i <= totalPages; i++){
 
     alert("Sebelum save");
 
-doc.save(fileName);
+const blob = doc.output("blob");
+
+alert(blob.size);
 
 alert("Sesudah save");
 }
