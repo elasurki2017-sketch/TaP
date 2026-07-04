@@ -2571,7 +2571,11 @@ for(let i = 1; i <= totalPages; i++){
         yearSelect.value +
         ".pdf";
 
-    doc.save(fileName);
+    alert("Sebelum save");
+
+doc.save(fileName);
+
+alert("Sesudah save");
 }
 
 /* =========================
