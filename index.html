@@ -1955,7 +1955,16 @@ EXPORT PDF
 ========================= */
 
 async function exportPDF(){
-alert("Export ditekan");
+
+    alert("1");
+
+    const { jsPDF } = window.jspdf;
+
+    alert("2");
+
+    const doc = new jsPDF("p","mm","a4");
+
+    alert("3");
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF("p","mm","a4");
 
