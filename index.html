@@ -2051,10 +2051,7 @@ let profileData = [
 
     ["Name",
     localStorage.getItem("employeeName") || ""],
-
-    ["NIK",
-    localStorage.getItem("employeeNik") || ""],
-
+    
     ["User",
     localStorage.getItem("employeeUser") || ""],
 
@@ -2073,8 +2070,8 @@ let rowColorIndex = 0;
 let rowH = 7;
 
 /* reset font */
-doc.setFont("helvetica","normal");
-doc.setFontSize(9);
+doc.setFont("helvetica","bold");
+doc.setFontbold(10);
 
 profileData.forEach((row)=>{
 
@@ -2700,8 +2697,8 @@ let valueWidth = 80;
 let rowH = 5;
 
 /* reset font */
-doc.setFont("helvetica","normal");
-doc.setFontSize(8);
+doc.setFont("helvetica","bold");
+doc.setFontSize(10);
 
 profileData.forEach((row)=>{
 
