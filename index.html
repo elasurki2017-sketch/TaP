@@ -2031,7 +2031,7 @@ const periodePdf = bulanSingkat[monthSelect.value] || "";
 
     /* ================= TITLE ================= */
 
-    y += 12;
+    y += 7;
 
     doc.setFont("helvetica","bold");
     doc.setFontSize(13);
@@ -2045,7 +2045,7 @@ const periodePdf = bulanSingkat[monthSelect.value] || "";
 
     /* ================= PROFILE ================= */
 
-y += 10;
+y += 5;
 
 let profileData = [
 
@@ -2093,7 +2093,7 @@ profileData.forEach((row)=>{
     profileY += rowH;
 });
 
-y = profileY + 8;
+y = profileY + 4;
 
     /* ================= FILTER ================= */
 
