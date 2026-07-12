@@ -3032,23 +3032,22 @@ doc.text(
     { align:"center" }
 );
 
-// Load gambar tanda tangan
+// Load gambar signature
 const img = new Image();
-img.crossOrigin = "Anonymous";
 
-img.onload = function () {
+img.onload = function(){
 
-    // Gambar tanda tangan
+    // gambar tanda tangan
     doc.addImage(
         img,
-        "JPEG",          // Ganti ke "PNG" jika file Anda PNG
-        sigStartX,
+        "JPEG",
+        sigCenter - 18,
         signY + 2,
-        40,
-        18
+        36,
+        16
     );
 
-    // Garis tanda tangan
+    // garis tanda tangan
     doc.line(
         sigStartX,
         signY + 20,
@@ -3056,7 +3055,7 @@ img.onload = function () {
         signY + 20
     );
 
-    // Nama
+    // nama
     doc.setFont("helvetica","normal");
     doc.setFontSize(9);
 
@@ -3064,13 +3063,13 @@ img.onload = function () {
         localStorage.getItem("employeeName") || "",
         sigCenter,
         signY + 24,
-        { align:"center" }
+        {align:"center"}
     );
 
-    // Nomor halaman
+    // nomor halaman
     const totalPages = doc.getNumberOfPages();
 
-    for(let i = 1; i <= totalPages; i++){
+    for(let i=1;i<=totalPages;i++){
 
         doc.setPage(i);
 
@@ -3079,23 +3078,45 @@ img.onload = function () {
 
         doc.text(
             i + "/" + totalPages,
-            PAGE_WIDTH / 2,
-            PAGE_HEIGHT - 5,
-            { align:"center" }
+            PAGE_WIDTH/2,
+            PAGE_HEIGHT-5,
+            {align:"center"}
         );
+
     }
 
-    // Simpan PDF
+    // simpan PDF setelah gambar selesai dimuat
     doc.save(fileName);
 
 };
 
-img.onerror = function () {
-    alert("Gagal memuat gambar tanda tangan.");
+img.onerror = function(){
+
+    // jika gambar gagal tetap simpan PDF
+    const totalPages = doc.getNumberOfPages();
+
+    for(let i=1;i<=totalPages;i++){
+
+        doc.setPage(i);
+
+        doc.setFont("helvetica","normal");
+        doc.setFontSize(9);
+
+        doc.text(
+            i + "/" + totalPages,
+            PAGE_WIDTH/2,
+            PAGE_HEIGHT-5,
+            {align:"center"}
+        );
+
+    }
+
+    doc.save(fileName);
+
 };
 
-// Pastikan file ini berada di folder yang sama dengan HTML
-img.src = "./IMG-20260712-WA0007.jpg";
+// Tempel gambar signature di sini
+img.src = "143127.jpg";
 
 /* =========================
 START
