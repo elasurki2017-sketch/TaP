@@ -3023,63 +3023,70 @@ doc.text(
     signY,
     { align:"center" }
 );
-
 const img = new Image();
 
-img.onload = function(){
+img.onload = function () {
 
     doc.addImage(
         img,
         "JPEG",
         sigStartX,
-        signY + 2,
+        y + 5,
         40,
-        18
+        20
     );
 
-    /* garis tanda tangan */
-    doc.line(
-        sigStartX,
-        signY + 20,
-        tableRight,
-        signY + 20
-    );
-
-    /* nama */
-    doc.text(
-        localStorage.getItem("employeeName") || "",
-        sigCenter,
-        signY + 24,
-        { align:"center" }
-    );
-
-    // PAGE NUMBER
-    const totalPages = doc.getNumberOfPages();
-
-    for(let i = 1; i <= totalPages; i++){
-        doc.setPage(i);
-        doc.setFont("helvetica","normal");
-        doc.setFontSize(9);
-        doc.text(
-            i + "/" + totalPages,
-            PAGE_WIDTH / 2,
-            PAGE_HEIGHT - 5,
-            {align:"center"}
-        );
-    }
-
-    let fileName =
-        "Rekap_Toll_Parkir_" +
-        monthSelect.value +
-        "_" +
-        yearSelect.value +
-        ".pdf";
-
-    doc.save(fileName);
-
+    doc.save("Laporan Toll Parkir.pdf");
 };
 
-img.src = "https://raw.githubusercontent.com/elasurki2017-sketch/TaP/main/IMG-20260712-WA0007.jpg";
+img.src = "images/tanda_tangan.jpg";
+/* garis tanda tangan */
+doc.line(
+    sigStartX,
+    signY + 20,
+    tableRight,
+    signY + 20
+);
+
+/* nama */
+doc.text(
+    localStorage.getItem("employeeName") || "",
+    sigCenter,
+    signY + 24,
+    { align:"center" }
+);
+
+
+// ================= PAGE NUMBER =================
+
+const totalPages = doc.getNumberOfPages();
+
+for(let i = 1; i <= totalPages; i++){
+
+    doc.setPage(i);
+
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(9);
+
+    // posisi bawah tengah
+    doc.text(
+        i + "/" + totalPages,
+        PAGE_WIDTH / 2,
+        PAGE_HEIGHT - 5,
+        {align:"center"}
+    );
+}
+    /* ================= SAVE ================= */
+
+    let fileName =
+"Rekap_Toll_Parkir_" +
+monthSelect.value +
+"_" +
+yearSelect.value +
+".pdf";
+
+    doc.save(fileName);
+}
 
 
 
