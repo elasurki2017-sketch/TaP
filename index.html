@@ -2507,46 +2507,20 @@ doc.text(
 );
 
 y += 28;
-    
+
+
 /* ================= SIGNATURE ================= */
 
-y += 25;
-
-let signWidth = 50;
-
-let sigStartX = tableRight - signWidth;
-let sigCenter = sigStartX + (signWidth / 2);
-
-/* tanggal saat PDF dibuat */
-const today = new Date();
-
-const namaBulan = [
-    "Januari",
-    "Februari",
-    "Maret",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Agustus",
-    "September",
-    "Oktober",
-    "November",
-    "Desember"
-];
-
-const tanggal =
-    today.getDate() + " " +
-    namaBulan[today.getMonth()] + " " +
-    today.getFullYear();
+/* tanggal sejajar dengan subtotal */
+doc.setFont("helvetica","normal");
+doc.setFontSize(9);
 
 doc.text(
     "Jakarta " + tanggal,
     sigCenter,
-    y,
-    { align: "center" }
+    signY,
+    { align:"center" }
 );
-const signImg = await loadSignature();
 
 doc.addImage(
     signatureBase64,
@@ -2560,19 +2534,16 @@ doc.addImage(
 /* garis tanda tangan */
 doc.line(
     sigStartX,
-    y + 20,
+    signY + 20,
     tableRight,
-    y + 20
+    signY + 20
 );
 
 /* nama */
-doc.setFont("helvetica","normal");
-doc.setFontSize(9);
-
 doc.text(
     localStorage.getItem("employeeName") || "",
     sigCenter,
-    y + 24,
+    signY + 24,
     { align:"center" }
 );
 
