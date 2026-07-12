@@ -2512,9 +2512,11 @@ const tanggal =
     today.getDate() + " " +
     namaBulan[today.getMonth()] + " " +
     today.getFullYear();
-
+    
+doc.setFont("helvetica","normal");
+doc.setFontSize(9);
 doc.text(
-    "Jakarta " + tanggal,
+    "Jakarta," + tanggal,
     sigCenter,
     y,
     { align: "center" }
@@ -3016,7 +3018,7 @@ doc.setFont("helvetica","normal");
 doc.setFontSize(9);
 
 doc.text(
-    "Jakarta " + tanggal,
+    "Jakarta, " + tanggal,
     sigCenter,
     signY,
     { align:"center" }
