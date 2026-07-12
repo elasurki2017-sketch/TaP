@@ -1996,7 +1996,7 @@ async function exportPDF(){
 
     const leftMargin = 12;
 const rightMargin = 12;
-    let y = 15;
+    let y = 10;
 
     /* ================= VALIDATE ================= */
 
@@ -2037,7 +2037,7 @@ const periodePdf = bulanSingkat[monthSelect.value] || "";
     doc.setFontSize(12);
     doc.text("PT TOYOTA ASTRA MOTOR", leftMargin, y);
 
-    y += 5;
+    y += 4;
 
     doc.setFont("helvetica","normal");
     doc.setFontSize(9);
