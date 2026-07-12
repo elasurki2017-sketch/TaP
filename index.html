@@ -3011,8 +3011,17 @@ doc.text(
 y += 20;
     doc.text("*Total Highway Parking Suspense Rp. 3.000.000", leftMargin, y);
 
-/* ==/* ================= SIGNATURE ================= */
+/* ================= SIGNATURE ================= */
 
+// Nama file PDF
+let fileName =
+    "Rekap_Toll_Parkir_" +
+    monthSelect.value +
+    "_" +
+    yearSelect.value +
+    ".pdf";
+
+// Tanggal
 doc.setFont("helvetica","normal");
 doc.setFontSize(9);
 
@@ -3023,21 +3032,23 @@ doc.text(
     { align:"center" }
 );
 
+// Load gambar tanda tangan
 const img = new Image();
 img.crossOrigin = "Anonymous";
 
 img.onload = function () {
 
+    // Gambar tanda tangan
     doc.addImage(
         img,
-        "JPEG",
+        "JPEG",          // Ganti ke "PNG" jika file Anda PNG
         sigStartX,
         signY + 2,
         40,
         18
     );
 
-    // garis tanda tangan
+    // Garis tanda tangan
     doc.line(
         sigStartX,
         signY + 20,
@@ -3045,7 +3056,10 @@ img.onload = function () {
         signY + 20
     );
 
-    // nama
+    // Nama
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(9);
+
     doc.text(
         localStorage.getItem("employeeName") || "",
         sigCenter,
@@ -3053,32 +3067,35 @@ img.onload = function () {
         { align:"center" }
     );
 
-    // nomor halaman
+    // Nomor halaman
     const totalPages = doc.getNumberOfPages();
 
     for(let i = 1; i <= totalPages; i++){
+
         doc.setPage(i);
+
         doc.setFont("helvetica","normal");
         doc.setFontSize(9);
+
         doc.text(
             i + "/" + totalPages,
             PAGE_WIDTH / 2,
             PAGE_HEIGHT - 5,
-            {align:"center"}
+            { align:"center" }
         );
     }
 
+    // Simpan PDF
     doc.save(fileName);
+
 };
 
-img.onerror = function(e){
-    console.log(e);
-    alert("Gagal memuat gambar.");
+img.onerror = function () {
+    alert("Gagal memuat gambar tanda tangan.");
 };
 
+// Pastikan file ini berada di folder yang sama dengan HTML
 img.src = "./IMG-20260712-WA0007.jpg";
-
-
 
 /* =========================
 START
