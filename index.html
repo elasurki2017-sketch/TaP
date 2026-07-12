@@ -3047,14 +3047,18 @@ doc.text(
     { align:"center" }
 );
 
-doc.addImage(
-    signatureBase64,
-    "JPEG",
-    sigStartX + 12,
-    y + 10,
-    28,
-    22
-);
+try {
+    doc.addImage(
+        signatureBase64,
+        "JPEG",
+        sigStartX + 12,
+        y + 1,
+        28,
+        22
+    );
+} catch (e) {
+    console.error(e);
+}
 
 /* garis tanda tangan */
 doc.line(
