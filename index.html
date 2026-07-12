@@ -3014,11 +3014,23 @@ doc.text(
     { align: "right" }
 );
 
-/* ================= SIGNATURE ================= */
+/* ================= TOTAL TOLL PARKING SUSPENSE ================= */
 
+doc.setFont("helvetica", "normal");
+doc.setFontSize(9);
+
+doc.text(
+    "*Total Toll Parking Suspense Rp. 3.000.000",
+    startX,
+    y + 10
+);
+
+/* ================= SIGNATURE ================= */
 /* tanggal sejajar dengan subtotal */
 doc.setFont("helvetica","normal");
 doc.setFontSize(9);
+
+signY = y + 22;
 
 doc.text(
     "Jakarta " + tanggal,
@@ -3031,11 +3043,10 @@ doc.addImage(
     signatureBase64,
     "JPEG",
     sigStartX + 12,
-    y + 10,
+    signY + 2,
     28,
     22
 );
-
 /* garis tanda tangan */
 doc.line(
     sigStartX,
