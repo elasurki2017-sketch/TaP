@@ -3018,28 +3018,12 @@ doc.setFont("helvetica","normal");
 doc.setFontSize(9);
 
 doc.text(
-    "Jakarta, " + tanggal,
+    "Jakarta " + tanggal,
     sigCenter,
     signY,
     { align:"center" }
 );
-const img = new Image();
 
-img.onload = function () {
-
-    doc.addImage(
-        img,
-        "JPEG",
-        sigStartX,
-        y + 5,
-        40,
-        20
-    );
-
-    doc.save("Laporan Toll Parkir.pdf");
-};
-
-img.src = "images/tanda_tangan.jpg";
 /* garis tanda tangan */
 doc.line(
     sigStartX,
