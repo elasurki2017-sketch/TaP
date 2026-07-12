@@ -3024,53 +3024,62 @@ doc.text(
     { align:"center" }
 );
 
-/* garis tanda tangan */
-doc.line(
-    sigStartX,
-    signY + 20,
-    tableRight,
-    signY + 20
-);
+const img = new Image();
 
-/* nama */
-doc.text(
-    localStorage.getItem("employeeName") || "",
-    sigCenter,
-    signY + 24,
-    { align:"center" }
-);
+img.onload = function(){
 
-
-// ================= PAGE NUMBER =================
-
-const totalPages = doc.getNumberOfPages();
-
-for(let i = 1; i <= totalPages; i++){
-
-    doc.setPage(i);
-
-    doc.setFont("helvetica","normal");
-    doc.setFontSize(9);
-
-    // posisi bawah tengah
-    doc.text(
-        i + "/" + totalPages,
-        PAGE_WIDTH / 2,
-        PAGE_HEIGHT - 5,
-        {align:"center"}
+    doc.addImage(
+        img,
+        "JPEG",
+        sigStartX,
+        signY + 2,
+        40,
+        18
     );
-}
-    /* ================= SAVE ================= */
+
+    /* garis tanda tangan */
+    doc.line(
+        sigStartX,
+        signY + 20,
+        tableRight,
+        signY + 20
+    );
+
+    /* nama */
+    doc.text(
+        localStorage.getItem("employeeName") || "",
+        sigCenter,
+        signY + 24,
+        { align:"center" }
+    );
+
+    // PAGE NUMBER
+    const totalPages = doc.getNumberOfPages();
+
+    for(let i = 1; i <= totalPages; i++){
+        doc.setPage(i);
+        doc.setFont("helvetica","normal");
+        doc.setFontSize(9);
+        doc.text(
+            i + "/" + totalPages,
+            PAGE_WIDTH / 2,
+            PAGE_HEIGHT - 5,
+            {align:"center"}
+        );
+    }
 
     let fileName =
-"Rekap_Toll_Parkir_" +
-monthSelect.value +
-"_" +
-yearSelect.value +
-".pdf";
+        "Rekap_Toll_Parkir_" +
+        monthSelect.value +
+        "_" +
+        yearSelect.value +
+        ".pdf";
 
     doc.save(fileName);
-}
+
+};
+
+img.src = "https://raw.githubusercontent.com/elasurki2017-sketch/TaP/main/IMG-20260712-WA0007.jpg";
 
 
 
