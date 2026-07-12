@@ -3013,82 +3013,80 @@ y += 20;
 
 /* ================= SIGNATURE ================= */
 
-doc.setFont("helvetica","normal");
-doc.setFontSize(9);
+const imageUrl =
+"https://raw.githubusercontent.com/elasurki2017-sketch/TaP/main/IMG-20260712-WA0007.jpg";
 
-doc.text(
-    "Jakarta, " + tanggal,
-    sigCenter,
-    signY,
-    { align:"center" }
-);
+fetch(imageUrl)
+.then(res => res.blob())
+.then(blob => {
 
-const img = new Image();
+    const reader = new FileReader();
 
-img.onload = function(){
+    reader.onloadend = function(){
 
-    doc.addImage(
-        img,
-        "JPEG",
-        sigStartX,
-        signY + 2,
-        40,
-        18
-    );
+        const base64data = reader.result;
 
-    /* garis tanda tangan */
-    doc.line(
-        sigStartX,
-        signY + 20,
-        tableRight,
-        signY + 20
-    );
-
-    /* nama */
-    doc.text(
-        localStorage.getItem("employeeName") || "",
-        sigCenter,
-        signY + 24,
-        { align:"center" }
-    );
-
-    /* PAGE NUMBER */
-    const totalPages = doc.getNumberOfPages();
-
-    for(let i = 1; i <= totalPages; i++){
-
-        doc.setPage(i);
-
-        doc.setFont("helvetica","normal");
-        doc.setFontSize(9);
-
-        doc.text(
-            i + "/" + totalPages,
-            PAGE_WIDTH / 2,
-            PAGE_HEIGHT - 5,
-            {align:"center"}
+        doc.addImage(
+            base64data,
+            "JPEG",
+            sigStartX,
+            signY + 2,
+            40,
+            18
         );
-    }
 
-    /* SAVE PDF */
-    let fileName =
+        /* garis tanda tangan */
+        doc.line(
+            sigStartX,
+            signY + 20,
+            tableRight,
+            signY + 20
+        );
+
+        /* nama */
+        doc.text(
+            localStorage.getItem("employeeName") || "",
+            sigCenter,
+            signY + 24,
+            { align:"center" }
+        );
+
+        /* PAGE NUMBER */
+        const totalPages = doc.getNumberOfPages();
+
+        for(let i=1;i<=totalPages;i++){
+
+            doc.setPage(i);
+
+            doc.setFont("helvetica","normal");
+            doc.setFontSize(9);
+
+            doc.text(
+                i + "/" + totalPages,
+                PAGE_WIDTH / 2,
+                PAGE_HEIGHT - 5,
+                {align:"center"}
+            );
+        }
+
+        let fileName =
         "Rekap_Toll_Parkir_" +
         monthSelect.value +
         "_" +
         yearSelect.value +
         ".pdf";
 
-    doc.save(fileName);
+        doc.save(fileName);
 
-};
+    };
 
-img.onerror = function(){
-    alert("Gagal memuat gambar tanda tangan.");
-};
+    reader.readAsDataURL(blob);
 
-img.src = "img.src = signatureBase64;";
-
-}
+})
+.catch(err => {
+    console.error(err);
+    alert("Gagal mengambil gambar tanda tangan.");
+});
 
 
 
